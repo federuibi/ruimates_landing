@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rui Mates | Mates, Bombillas y Yerberas Artesanales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --dark: #1a1a1a;
+            --light: #faf8f5;
+            --yerba: #4a7c3f;
+            --mate-brown: #6b3a2a;
+            --mate-light: #a0522d;
+            --cream: #f5e6d3;
+            --text: #2c1810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-mate {
+            width: 80px;
+            height: 100px;
+            background: var(--mate-brown);
+            border-radius: 0 0 50% 50%;
+            position: relative;
+            animation: pulse 1.5s infinite;
+        }
+
+        .preloader-mate::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 30px;
+            background: var(--mate-light);
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 5%;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c1810 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--light);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.3s backwards;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s;
+            animation: fadeInUp 1s 0.6s backwards;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Mate Animation Section */
+        .mate-animation-section {
+            min-height: 300vh;
+            background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+            position: relative;
+            padding: 5rem 0;
+        }
+
+        .mate-sticky {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .mate-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin-bottom: 3rem;
+        }
+
+        /* Mate SVG */
+        .mate-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+        }
+
+        .mate-body {
+            fill: var(--mate-brown);
+            stroke: #3d1f14;
+            stroke-width: 3;
+        }
+
+        .mate-rim {
+            fill: var(--mate-light);
+            stroke: #3d1f14;
+            stroke-width: 3;
+        }
+
+        .yerba {
+            fill: var(--yerba);
+        }
+
+        .water {
+            fill: #c8e6c9;
+            opacity: 0.8;
+            transition: all 0.1s;
+        }
+
+        .steam {
+            animation: steamRise 3s infinite;
+            opacity: 0;
+        }
+
+        .steam-1 { animation-delay: 0s; }
+        .steam-2 { animation-delay: 1s; }
+        .steam-3 { animation-delay: 2s; }
+
+        @keyframes steamRise {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--text);
+        }
+
+        .scroll-indicator i {
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 5%;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image::after {
+            transform: scale(1.5);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-rating {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--secondary);
+        }
+
+        /* Interactive Features */
+        .interactive-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #2c1810 100%);
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+            transition: right 0.5s;
+            z-index: 1001;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .cart-modal.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mate-container {
+                width: 200px;
+                height: 300px;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-mate"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">Rui<span>Mates</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <button class="cta-btn" style="padding: 0.5rem 1.5rem; background: var(--accent); border: none; cursor: pointer;" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Rui<span>Mates</span></h1>
+            <p>La tradición argentina en cada mate</p>
+            <a href="#experiencia" class="cta-btn">Descubrir Experiencia</a>
+        </div>
+    </section>
+
+    <!-- Mate Animation Section -->
+    <section class="mate-animation-section" id="experiencia">
+        <div class="mate-sticky">
+            <div class="mate-container">
+                <svg class="mate-svg" viewBox="0 0 300 400">
+                    <!-- Mate Body -->
+                    <path class="mate-body" d="M100,150 C100,120 120,100 150,100 C180,100 200,120 200,150 L195,250 C190,280 170,300 150,300 C130,300 110,280 105,250 Z"/>
+                    
+                    <!-- Mate Rim -->
+                    <ellipse class="mate-rim" cx="150" cy="105" rx="65" ry="15"/>
+                    
+                    <!-- Yerba -->
+                    <path class="yerba" d="M95,110 C95,100 120,92 150,92 C180,92 205,100 205,110 C205,115 180,112 150,112 C120,112 95,115 95,110 Z"/>
+                    
+                    <!-- Water (animated) -->
+                    <ellipse class="water" cx="150" cy="108" rx="60" ry="12" id="waterLevel"/>
+                    
+                    <!-- Bombilla -->
+                    <path d="M165,105 L175,50 L185,50 L175,105" fill="#C0C0C0" stroke="#808080" stroke-width="2"/>
+                    <path d="M165,105 L175,105" stroke="#808080" stroke-width="3"/>
+                    
+                    <!-- Steam -->
+                    <ellipse class="steam steam-1" cx="145" cy="40" rx="8" ry="4" fill="none" stroke="#fff" stroke-width="2"/>
+                    <ellipse class="steam steam-2" cx="155" cy="35" rx="6" ry="3" fill="none" stroke="#fff" stroke-width="2"/>
+                    <ellipse class="steam steam-3" cx="150" cy="30" rx="7" ry="3.5" fill="none" stroke="#fff" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="scroll-indicator">
+                <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Sigue bajando...</p>
+                <i class="fas fa-chevron-down" style="color: var(--primary);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="productos">
+        <h2 class="section-title">Nuestros <span>Productos</span></h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be added by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Interactive Features -->
+    <section class="interactive-section" id="contacto">
+        <h2 class="section-title" style="color: white;">¿Por qué <span style="color: var(--accent);">RuiMates</span>?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                <h3>100% Artesanal</h3>
+                <p>Hecho a mano con materiales nobles</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                <h3>Envío a todo el país</h3>
+                <p>Recibe tu mate en 48hs</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                <h3>Garantía de por vida</h3>
+                <p>Si se rompe, lo reparamos</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>+5000 clientes</h3>
+                <p>La comunidad matera más grande</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark); color: white; text-align: center; padding: 2rem;">
+        <p style="font-size: 1.2rem;">© 2024 RuiMates - Todos los derechos reservados</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center;">
+            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>Carrito de Compras</h2>
+            <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        </div>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal">Total: $0</div>
+        <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+    </div>
+
+    <script>
+        // Products Data
+        const products = [
+            { id: 1, name: "Mate Imperial", price: 4500, icon: "🧉", rating: 5, description: "Mate de calabaza premium" },
+            { id: 2, name: "Mate Camionero", price: 3800, icon: "🧉", rating: 4.5, description: "Mate grande para compartir" },
+            { id: 3, name: "Bombilla Pico de Loro", price: 2500, icon: "🥤", rating: 5, description: "Bombilla de alpaca" },
+            { id: 4, name: "Yerbera Premium", price: 3200, icon: "🫙", rating: 4.8, description: "Yerbera de cerámica" },
+            { id: 5, name: "Canasta Matera", price: 8900, icon: "🧺", rating: 5, description: "Canasta completa premium" },
+            { id: 6, name: "Mate Autocebante", price: 5200, icon: "⚡", rating: 4.7, description: "Mate de acero inoxidable" }
+        ];
+
+        let cart = [];
+
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mate water filling animation
+        const waterLevel = document.getElementById('waterLevel');
+        const mateSection = document.querySelector('.mate-animation-section');
+        
+        window.addEventListener('scroll', () => {
+            const rect = mateSection.getBoundingClientRect();
+            const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            
+            // Water level animation (0 to 1)
+            const waterProgress = Math.max(0, Math.min(1, scrollProgress));
+            
+            // Update water level
+            const waterY = 108 - (waterProgress * 15);
+            const waterHeight = 5 + (waterProgress * 10);
+            waterLevel.setAttribute('cy', waterY);
+            waterLevel.setAttribute('ry', waterHeight);
+            
+            // Change water color based on fill level
+            if (waterProgress > 0.7) {
+                waterLevel.style.fill = '#81c784';
+            } else if (waterProgress > 0.4) {
+                waterLevel.style.fill = '#a5d6a7';
+            } else {
+                waterLevel.style.fill = '#c8e6c9';
+            }
+            
+            // Show steam when water is hot
+            const steamElements = document.querySelectorAll('.steam');
+            if (waterProgress > 0.3) {
+                steamElements.forEach(steam => {
+                    steam.style.opacity = '1';
+                });
+            } else {
+                steamElements.forEach(steam => {
+                    steam.style.opacity = '0';
+                });
+            }
+        });
+
+        // Render Products
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 5rem;">${product.icon}</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p style="color: #666; margin-bottom: 0.5rem;">${product.description}</p>
+                        <div class="product-rating">
+                            ${Array.from({length: 5}, (_, i) => 
+                                `<i class="fas fa-star${i < Math.floor(product.rating) ? '' : '-half-alt'}" style="color: var(--accent);"></i>`
+                            ).join('')}
+                            <span style="color: #666; font-size: 0.9rem;">(${product.rating})</span>
+                        </div>
+                        <p class="product-price">$${product.price.toLocaleString()}</p>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Cart functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCartUI();
+            showNotification(`${product.name} agregado al carrito`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #999;">Carrito vacío</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <p style="font-size: 0.9rem; color: #666;">$${item.price.toLocaleString()} x ${item.quantity}</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" style="background: none; border: none; color: red; cursor: pointer;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Total: $${total.toLocaleString()}`;
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.classList.toggle('open');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('El carrito está vacío');
+                return;
+            }
+            alert('¡Gracias por tu compra! Te contactaremos para coordinar el envío.');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 2000;
+                animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Add custom animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        renderProducts();
+        updateCartUI();
+    </script>
+</body>
+</html>
