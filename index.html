@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rui Mates | Experiencia Realista de Cebado</title>
+    <title>Rui Mates | Cebado Realista</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary: #5D3A1A;
-            --secondary: #8B5E3C;
             --accent: #D4A574;
             --dark: #1a0f08;
             --light: #fdf6ee;
-            --water-light: #e8f5e9;
+            --water: #a5d6a7;
             --water-dark: #4a8c3f;
-            --steam-color: rgba(255, 255, 255, 0.6);
-            --yerba-green: #3e6b35;
-            --yerba-dark: #2d4a28;
-            --mate-brown: #6b3a2a;
-            --mate-dark: #4a2518;
-            --mate-rim: #8b5e3c;
+            --steam: rgba(255, 255, 255, 0.7);
         }
 
         * {
@@ -32,11 +27,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--light);
+            background: var(--dark);
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             height: 100vh;
             background: radial-gradient(ellipse at center, #2d1a0e 0%, #1a0f08 100%);
@@ -44,50 +39,25 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
-            pointer-events: none;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            animation: fadeInUp 1.5s;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: #fff;
-            text-shadow: 0 0 50px rgba(212, 165, 116, 0.5);
-            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: 0 0 50px rgba(212, 165, 116, 0.6);
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, #D4A574 0%, #F5E6D3 50%, #D4A574 100%);
+            background: linear-gradient(135deg, #D4A574, #F5E6D3, #D4A574);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: none;
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            color: #D4A574;
-            margin-bottom: 2rem;
-        }
-
-        .scroll-hint {
+        .scroll-indicator {
             position: absolute;
             bottom: 2rem;
             left: 50%;
@@ -97,139 +67,193 @@
             animation: bounce 2s infinite;
         }
 
-        .scroll-hint i {
-            font-size: 2.5rem;
-            display: block;
-        }
-
-        /* Mate Experience Section */
-        .mate-experience {
+        /* Mate Section */
+        .mate-section {
             min-height: 400vh;
-            background: linear-gradient(180deg, #1a0f08 0%, #2d1a0e 30%, #1a0f08 100%);
             position: relative;
+            background: linear-gradient(180deg, #1a0f08 0%, #2d1a0e 50%, #1a0f08 100%);
         }
 
-        .mate-sticky-container {
+        .mate-sticky {
             position: sticky;
             top: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
 
         .mate-scene {
             position: relative;
-            width: 600px;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 500px;
+            height: 500px;
         }
 
-        /* Mate SVG */
-        .mate-svg {
+        /* Real mate image */
+        .mate-real {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0vi2X8IPaC6GdmF1QIfvIUaP6ID9l9fSJGqv_L_StSu1PBZykmYkelRk&s=10');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            filter: brightness(1.1) contrast(1.2) saturate(1.3);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.8),
+                inset 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        /* Water overlay */
+        .water-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .water-fill {
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
+            height: 0%;
+            background: linear-gradient(180deg, 
+                rgba(200, 230, 201, 0.9) 0%, 
+                rgba(129, 199, 132, 0.7) 40%,
+                rgba(76, 175, 80, 0.6) 100%);
+            border-radius: 0 0 50% 50%;
+            transition: height 0.3s ease;
         }
 
-        .mate-body {
-            fill: url(#mateGradient);
-            stroke: #2d1410;
-            stroke-width: 4;
-        }
-
-        .mate-inner {
-            fill: url(#innerGradient);
-        }
-
-        .yerba {
-            fill: url(#yerbaGradient);
-        }
-
-        .water {
-            fill: url(#waterGradient);
-            transition: all 0.3s ease;
-        }
-
-        .bombilla {
-            fill: url(#metalGradient);
-            stroke: #4a4a4a;
-            stroke-width: 2;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+        .water-shine {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: shineMove 3s ease-in-out infinite;
+            opacity: 0;
         }
 
         /* Steam particles */
         .steam-particle {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, 
+                rgba(255,255,255,0.9) 0%, 
+                rgba(255,255,255,0.3) 50%,
+                transparent 70%);
             pointer-events: none;
             animation: steamRise linear infinite;
-            filter: blur(10px);
+            filter: blur(15px);
         }
 
         /* Water drops */
         .water-drop {
             position: absolute;
-            background: linear-gradient(180deg, #c8e6c9 0%, #81c784 50%, #4a8c3f 100%);
+            background: linear-gradient(180deg, 
+                #e8f5e9 0%, 
+                #81c784 50%, 
+                #4a8c3f 100%);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: dropFall 1s ease-in infinite;
-            opacity: 0;
+            animation: dropFall ease-in infinite;
+            pointer-events: none;
             filter: blur(1px);
+            box-shadow: 0 0 10px rgba(129, 199, 132, 0.5);
         }
 
         /* Heat waves */
         .heat-wave {
             position: absolute;
-            border: 2px solid rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.15);
             border-radius: 50%;
-            animation: heatExpand 3s ease-out infinite;
-            opacity: 0;
+            animation: heatExpand ease-out infinite;
+            pointer-events: none;
+        }
+
+        /* Steam glow */
+        .steam-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100px;
+            background: radial-gradient(ellipse, 
+                rgba(255,255,255,0.3) 0%, 
+                transparent 70%);
+            filter: blur(20px);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
         }
 
         @keyframes steamRise {
             0% {
-                transform: translateY(0) translateX(0) scale(1);
+                transform: translate(0, 0) scale(0.5);
                 opacity: 0;
             }
-            10% {
+            20% {
                 opacity: 0.8;
             }
-            50% {
-                transform: translateY(-100px) translateX(20px) scale(1.5);
-                opacity: 0.5;
-            }
             100% {
-                transform: translateY(-200px) translateX(-20px) scale(2);
+                transform: translate(var(--drift), -200px) scale(2);
                 opacity: 0;
             }
         }
 
         @keyframes dropFall {
             0% {
-                transform: translateY(-50px) scale(0.5);
+                transform: translateY(-100px) scale(0.5);
                 opacity: 0;
             }
-            50% {
+            30% {
                 opacity: 1;
             }
             100% {
-                transform: translateY(50px) scale(1);
-                opacity: 0.7;
+                transform: translateY(80px) scale(1);
+                opacity: 0.8;
             }
         }
 
         @keyframes heatExpand {
             0% {
                 transform: scale(0.5);
-                opacity: 0.3;
+                opacity: 0.4;
             }
             100% {
                 transform: scale(3);
                 opacity: 0;
+            }
+        }
+
+        @keyframes shineMove {
+            0%, 100% {
+                transform: translateX(-50%);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(50%);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.5);
             }
         }
 
@@ -238,52 +262,22 @@
             50% { transform: translateY(-20px); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Progress indicator */
-        .progress-indicator {
+        /* Progress bar */
+        .progress-bar {
             position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 1000;
         }
 
-        .progress-step {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #D4A574;
-            opacity: 0.3;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .progress-step.active {
-            opacity: 1;
-            transform: scale(1.5);
-            box-shadow: 0 0 20px rgba(212, 165, 116, 0.8);
-        }
-
-        .progress-label {
-            position: absolute;
-            right: 30px;
-            white-space: nowrap;
-            color: #D4A574;
-            font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .progress-step:hover .progress-label {
-            opacity: 1;
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D4A574, #F5E6D3);
+            width: 0%;
+            transition: width 0.1s;
         }
 
         @media (max-width: 768px) {
@@ -291,281 +285,182 @@
                 width: 300px;
                 height: 300px;
             }
-            .hero h1 {
-                font-size: 3rem;
+            .mate-real {
+                width: 250px;
+                height: 250px;
             }
-            .progress-indicator {
-                display: none;
+            .water-overlay {
+                width: 200px;
+                height: 200px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Progress bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-content">
+        <div>
             <h1>Rui<span>Mates</span></h1>
-            <p>La experiencia del mate perfecto</p>
+            <p style="text-align: center; color: #D4A574; margin-top: 1rem; font-size: 1.2rem;">La experiencia del mate perfecto</p>
         </div>
-        <div class="scroll-hint">
+        <div class="scroll-indicator">
             <span>Bajá para cebar tu mate</span>
-            <i class="fas fa-chevron-down"></i>
+            <br>
+            <i class="fas fa-chevron-down" style="font-size: 2rem;"></i>
         </div>
     </section>
 
-    <!-- Mate Experience -->
-    <section class="mate-experience" id="mateExperience">
-        <div class="mate-sticky-container">
+    <!-- Mate Section -->
+    <section class="mate-section" id="mateSection">
+        <div class="mate-sticky">
             <div class="mate-scene">
-                <!-- Steam particles container -->
+                <!-- Steam glow -->
+                <div class="steam-glow" id="steamGlow"></div>
+                
+                <!-- Real mate image -->
+                <div class="mate-real"></div>
+                
+                <!-- Water overlay -->
+                <div class="water-overlay">
+                    <div class="water-fill" id="waterFill"></div>
+                    <div class="water-shine" id="waterShine"></div>
+                </div>
+                
+                <!-- Containers for particles -->
                 <div id="steamContainer"></div>
-                
-                <!-- Water drops container -->
-                <div id="waterDropsContainer"></div>
-                
-                <!-- Heat waves -->
-                <div id="heatWavesContainer"></div>
-                
-                <!-- Mate SVG -->
-                <svg class="mate-svg" viewBox="0 0 600 600">
-                    <defs>
-                        <!-- Mate body gradient -->
-                        <linearGradient id="mateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#8b5e3c"/>
-                            <stop offset="30%" style="stop-color:#6b3a2a"/>
-                            <stop offset="70%" style="stop-color:#4a2518"/>
-                            <stop offset="100%" style="stop-color:#2d1410"/>
-                        </linearGradient>
-                        
-                        <!-- Inner mate gradient -->
-                        <radialGradient id="innerGradient" cx="50%" cy="40%" r="50%">
-                            <stop offset="0%" style="stop-color:#3d1f14"/>
-                            <stop offset="100%" style="stop-color:#2d1410"/>
-                        </radialGradient>
-                        
-                        <!-- Yerba gradient -->
-                        <linearGradient id="yerbaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#4a8c3f"/>
-                            <stop offset="100%" style="stop-color:#2d4a28"/>
-                        </linearGradient>
-                        
-                        <!-- Water gradient -->
-                        <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:0.9"/>
-                            <stop offset="50%" style="stop-color:#a5d6a7;stop-opacity:0.7"/>
-                            <stop offset="100%" style="stop-color:#4a8c3f;stop-opacity:0.5"/>
-                        </linearGradient>
-                        
-                        <!-- Metal gradient for bombilla -->
-                        <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#c0c0c0"/>
-                            <stop offset="50%" style="stop-color:#f0f0f0"/>
-                            <stop offset="100%" style="stop-color:#808080"/>
-                        </linearGradient>
-                        
-                        <!-- Filters -->
-                        <filter id="roughPaper">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
-                            <feDiffuseLighting in="noise" lighting-color="white" surfaceScale="2">
-                                <feDistantLight azimuth="45" elevation="60"/>
-                            </feDiffuseLighting>
-                            <feComposite in="SourceGraphic" in2="noise" operator="arithmetic" k1="0.8" k2="0.2" k3="0" k4="0"/>
-                        </filter>
-                    </defs>
-                    
-                    <!-- Mate body - Imperial style -->
-                    <path class="mate-body" d="M200,200 C200,180 220,170 300,170 C380,170 400,180 400,200 
-                             L395,400 C390,440 370,460 300,460 C230,460 210,440 205,400 Z"/>
-                    
-                    <!-- Mate rim -->
-                    <ellipse cx="300" cy="175" rx="110" ry="25" fill="#8b5e3c" stroke="#2d1410" stroke-width="3"/>
-                    
-                    <!-- Inner mate -->
-                    <ellipse cx="300" cy="175" rx="95" ry="20" fill="#3d1f14"/>
-                    
-                    <!-- Yerba bed -->
-                    <path class="yerba" d="M215,175 C215,165 250,158 300,158 C350,158 385,165 385,175 
-                             C385,185 350,190 300,190 C250,190 215,185 215,175 Z"/>
-                    
-                    <!-- Water level - this will animate -->
-                    <ellipse class="water" cx="300" cy="175" rx="90" ry="18" id="waterLevel"/>
-                    
-                    <!-- Water surface shine -->
-                    <ellipse cx="300" cy="175" rx="60" ry="10" fill="rgba(255,255,255,0.3)" id="waterShine" style="opacity:0"/>
-                    
-                    <!-- Bombilla -->
-                    <g class="bombilla">
-                        <path d="M320,170 L340,80 L355,80 L335,170" fill="none" stroke="url(#metalGradient)" stroke-width="12"/>
-                        <path d="M320,170 L335,170" stroke="url(#metalGradient)" stroke-width="15"/>
-                        <ellipse cx="337" cy="80" rx="15" ry="8" fill="url(#metalGradient)"/>
-                        <!-- Bombilla holes -->
-                        <circle cx="330" cy="160" r="2" fill="#2d1410"/>
-                        <circle cx="335" cy="155" r="2" fill="#2d1410"/>
-                        <circle cx="328" cy="152" r="2" fill="#2d1410"/>
-                        <circle cx="333" cy="162" r="2" fill="#2d1410"/>
-                    </g>
-                    
-                    <!-- Leather detail -->
-                    <path d="M190,210 C185,220 185,230 190,240" fill="none" stroke="#2d1410" stroke-width="3"/>
-                    <path d="M410,210 C415,220 415,230 410,240" fill="none" stroke="#2d1410" stroke-width="3"/>
-                    
-                    <!-- Metal ring -->
-                    <ellipse cx="300" cy="460" rx="60" ry="8" fill="none" stroke="#c0c0c0" stroke-width="3"/>
-                </svg>
+                <div id="dropsContainer"></div>
+                <div id="heatContainer"></div>
             </div>
         </div>
     </section>
 
-    <!-- Progress indicator -->
-    <div class="progress-indicator" id="progressIndicator">
-        <div class="progress-step" data-step="0"><span class="progress-label">Mate vacío</span></div>
-        <div class="progress-step" data-step="1"><span class="progress-label">Agregando yerba</span></div>
-        <div class="progress-step" data-step="2"><span class="progress-label">Calentando agua</span></div>
-        <div class="progress-step" data-step="3"><span class="progress-label">Cebando mate</span></div>
-        <div class="progress-step" data-step="4"><span class="progress-label">Listo para tomar</span></div>
-    </div>
-
     <script>
-        const waterLevel = document.getElementById('waterLevel');
+        const waterFill = document.getElementById('waterFill');
         const waterShine = document.getElementById('waterShine');
+        const steamGlow = document.getElementById('steamGlow');
         const steamContainer = document.getElementById('steamContainer');
-        const waterDropsContainer = document.getElementById('waterDropsContainer');
-        const heatWavesContainer = document.getElementById('heatWavesContainer');
-        const mateExperience = document.getElementById('mateExperience');
-        const progressSteps = document.querySelectorAll('.progress-step');
+        const dropsContainer = document.getElementById('dropsContainer');
+        const heatContainer = document.getElementById('heatContainer');
+        const mateSection = document.getElementById('mateSection');
+        const progressFill = document.getElementById('progressFill');
 
-        // Steam particle creator
+        // Create steam particle
         function createSteamParticle() {
             const particle = document.createElement('div');
             particle.className = 'steam-particle';
-            const size = Math.random() * 30 + 20;
+            const size = Math.random() * 40 + 30;
+            const drift = (Math.random() - 0.5) * 100;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
-            particle.style.left = (280 + Math.random() * 40) + 'px';
-            particle.style.top = '150px';
-            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            particle.style.animationDelay = Math.random() + 's';
+            particle.style.left = (180 + Math.random() * 140) + 'px';
+            particle.style.top = '180px';
+            particle.style.setProperty('--drift', drift + 'px');
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
             steamContainer.appendChild(particle);
             
-            setTimeout(() => {
-                particle.remove();
-            }, 4000);
+            setTimeout(() => particle.remove(), 5000);
         }
 
-        // Water drop creator
+        // Create water drop
         function createWaterDrop() {
             const drop = document.createElement('div');
             drop.className = 'water-drop';
-            drop.style.width = '8px';
-            drop.style.height = '12px';
-            drop.style.left = (290 + Math.random() * 20) + 'px';
+            const size = Math.random() * 6 + 4;
+            drop.style.width = size + 'px';
+            drop.style.height = (size * 1.5) + 'px';
+            drop.style.left = (200 + Math.random() * 100) + 'px';
             drop.style.top = '100px';
-            drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
-            waterDropsContainer.appendChild(drop);
+            drop.style.animationDuration = (Math.random() * 0.8 + 0.4) + 's';
+            dropsContainer.appendChild(drop);
             
-            setTimeout(() => {
-                drop.remove();
-            }, 1500);
+            setTimeout(() => drop.remove(), 1500);
         }
 
-        // Heat wave creator
+        // Create heat wave
         function createHeatWave() {
             const wave = document.createElement('div');
             wave.className = 'heat-wave';
-            wave.style.width = '50px';
-            wave.style.height = '50px';
-            wave.style.left = (280 + Math.random() * 40) + 'px';
-            wave.style.top = '140px';
-            heatWavesContainer.appendChild(wave);
+            const size = Math.random() * 30 + 20;
+            wave.style.width = size + 'px';
+            wave.style.height = size + 'px';
+            wave.style.left = (200 + Math.random() * 100) + 'px';
+            wave.style.top = (150 + Math.random() * 100) + 'px';
+            wave.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            heatContainer.appendChild(wave);
             
-            setTimeout(() => {
-                wave.remove();
-            }, 3000);
+            setTimeout(() => wave.remove(), 4000);
         }
 
         // Update mate state based on scroll
-        function updateMateState(scrollProgress) {
-            // Water level animation (0 to 1)
-            const waterFill = Math.max(0, Math.min(1, scrollProgress * 1.5 - 0.2));
+        function updateMateState() {
+            const rect = mateSection.getBoundingClientRect();
+            const totalHeight = mateSection.offsetHeight;
+            const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / totalHeight));
             
-            // Update water level
-            const waterY = 175 - (waterFill * 10);
-            const waterRy = 5 + (waterFill * 15);
-            waterLevel.setAttribute('cy', waterY);
-            waterLevel.setAttribute('ry', waterRy);
+            // Update progress bar
+            progressFill.style.width = (scrollProgress * 100) + '%';
             
-            // Water shine
-            if (waterFill > 0.5) {
-                waterShine.style.opacity = (waterFill - 0.5) * 2;
+            // Water fill level (0 to 70% of container)
+            const waterLevel = scrollProgress * 70;
+            waterFill.style.height = waterLevel + '%';
+            
+            // Show shine when water is present
+            if (waterLevel > 10) {
+                waterShine.style.opacity = (waterLevel - 10) / 60;
             } else {
                 waterShine.style.opacity = 0;
             }
             
-            // Create steam when water is hot (after 30% scroll)
-            if (waterFill > 0.3 && Math.random() < 0.1) {
+            // Show glow when water is hot
+            if (scrollProgress > 0.4) {
+                steamGlow.style.opacity = (scrollProgress - 0.4) * 2;
+            } else {
+                steamGlow.style.opacity = 0;
+            }
+            
+            // Generate effects based on scroll progress
+            if (scrollProgress > 0.2 && scrollProgress < 0.6) {
+                // Water is being poured
+                if (Math.random() < 0.4) createWaterDrop();
+            }
+            
+            if (scrollProgress > 0.4) {
+                // Steam is rising
+                if (Math.random() < 0.3) createSteamParticle();
+                if (Math.random() < 0.1) createHeatWave();
+            }
+            
+            // Continuous steam generation
+            if (scrollProgress > 0.6 && Math.random() < 0.5) {
                 createSteamParticle();
-            }
-            
-            // Create water drops when water is being poured
-            if (waterFill > 0.2 && waterFill < 0.7 && Math.random() < 0.3) {
-                createWaterDrop();
-            }
-            
-            // Create heat waves
-            if (waterFill > 0.4 && Math.random() < 0.05) {
-                createHeatWave();
-            }
-            
-            // Update progress indicators
-            const progressIndex = Math.floor(waterFill * 5);
-            progressSteps.forEach((step, index) => {
-                if (index <= progressIndex) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
-            
-            // Continuous steam generation when water is hot
-            if (waterFill > 0.5) {
-                if (Math.random() < 0.3) {
-                    createSteamParticle();
-                }
             }
         }
 
-        // Scroll event listener
-        window.addEventListener('scroll', () => {
-            const rect = mateExperience.getBoundingClientRect();
-            const totalHeight = mateExperience.offsetHeight;
-            const scrollProgress = (window.innerHeight - rect.top) / totalHeight;
-            
-            updateMateState(scrollProgress);
-        });
+        // Scroll event
+        window.addEventListener('scroll', updateMateState);
 
-        // Initial steam particles on load
+        // Initial state
+        updateMateState();
+
+        // Generate ambient steam on load
         setInterval(() => {
-            const rect = mateExperience.getBoundingClientRect();
+            const rect = mateSection.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom > 0) {
-                // Only generate steam if user is in the mate section
-                const scrollProgress = (window.innerHeight - rect.top) / mateExperience.offsetHeight;
-                if (scrollProgress > 0.3) {
+                const scrollProgress = (window.innerHeight - rect.top) / mateSection.offsetHeight;
+                if (scrollProgress > 0.5 && Math.random() < 0.3) {
                     createSteamParticle();
                 }
             }
-        }, 1000);
-
-        // Smooth scroll for progress indicators
-        progressSteps.forEach((step, index) => {
-            step.addEventListener('click', () => {
-                const targetScroll = (index / 5) * mateExperience.offsetHeight;
-                window.scrollTo({
-                    top: mateExperience.offsetTop + targetScroll,
-                    behavior: 'smooth'
-                });
-            });
-        });
+        }, 2000);
     </script>
 </body>
 </html>
