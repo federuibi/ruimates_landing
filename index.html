@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rui Mates | Mates, Bombillas y Yerberas Artesanales</title>
+    <title>Rui Mates | Experiencia Realista de Cebado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary: #8B4513;
-            --secondary: #D2691E;
-            --accent: #FFD700;
-            --dark: #1a1a1a;
-            --light: #faf8f5;
-            --yerba: #4a7c3f;
+            --primary: #5D3A1A;
+            --secondary: #8B5E3C;
+            --accent: #D4A574;
+            --dark: #1a0f08;
+            --light: #fdf6ee;
+            --water-light: #e8f5e9;
+            --water-dark: #4a8c3f;
+            --steam-color: rgba(255, 255, 255, 0.6);
+            --yerba-green: #3e6b35;
+            --yerba-dark: #2d4a28;
             --mate-brown: #6b3a2a;
-            --mate-light: #a0522d;
-            --cream: #f5e6d3;
-            --text: #2c1810;
+            --mate-dark: #4a2518;
+            --mate-rim: #8b5e3c;
         }
 
         * {
@@ -31,124 +33,13 @@
         body {
             font-family: 'Inter', sans-serif;
             background: var(--light);
-            color: var(--text);
             overflow-x: hidden;
-        }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .preloader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .preloader-mate {
-            width: 80px;
-            height: 100px;
-            background: var(--mate-brown);
-            border-radius: 0 0 50% 50%;
-            position: relative;
-            animation: pulse 1.5s infinite;
-        }
-
-        .preloader-mate::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90px;
-            height: 30px;
-            background: var(--mate-light);
-            border-radius: 50%;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-
-        .navbar.scrolled {
-            padding: 0.5rem 5%;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: var(--light);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c1810 100%);
+            background: radial-gradient(ellipse at center, #2d1a0e 0%, #1a0f08 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,687 +47,525 @@
             overflow: hidden;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
         .hero-content {
             text-align: center;
             z-index: 2;
-            padding: 0 2rem;
+            animation: fadeInUp 1.5s;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
             font-weight: 900;
-            color: var(--light);
+            color: #fff;
+            text-shadow: 0 0 50px rgba(212, 165, 116, 0.5);
             margin-bottom: 1rem;
-            animation: fadeInUp 1s;
         }
 
         .hero h1 span {
-            color: var(--accent);
+            background: linear-gradient(135deg, #D4A574 0%, #F5E6D3 50%, #D4A574 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #ccc;
+            font-size: 1.5rem;
+            color: #D4A574;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s 0.3s backwards;
         }
 
-        .cta-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: all 0.3s;
-            animation: fadeInUp 1s 0.6s backwards;
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #D4A574;
+            text-align: center;
+            animation: bounce 2s infinite;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        .scroll-hint i {
+            font-size: 2.5rem;
+            display: block;
         }
 
-        /* Mate Animation Section */
-        .mate-animation-section {
-            min-height: 300vh;
-            background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+        /* Mate Experience Section */
+        .mate-experience {
+            min-height: 400vh;
+            background: linear-gradient(180deg, #1a0f08 0%, #2d1a0e 30%, #1a0f08 100%);
             position: relative;
-            padding: 5rem 0;
         }
 
-        .mate-sticky {
+        .mate-sticky-container {
             position: sticky;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            overflow: hidden;
         }
 
-        .mate-container {
+        .mate-scene {
             position: relative;
-            width: 300px;
-            height: 400px;
-            margin-bottom: 3rem;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Mate SVG */
         .mate-svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8));
         }
 
         .mate-body {
-            fill: var(--mate-brown);
-            stroke: #3d1f14;
-            stroke-width: 3;
+            fill: url(#mateGradient);
+            stroke: #2d1410;
+            stroke-width: 4;
         }
 
-        .mate-rim {
-            fill: var(--mate-light);
-            stroke: #3d1f14;
-            stroke-width: 3;
+        .mate-inner {
+            fill: url(#innerGradient);
         }
 
         .yerba {
-            fill: var(--yerba);
+            fill: url(#yerbaGradient);
         }
 
         .water {
-            fill: #c8e6c9;
-            opacity: 0.8;
-            transition: all 0.1s;
+            fill: url(#waterGradient);
+            transition: all 0.3s ease;
         }
 
-        .steam {
-            animation: steamRise 3s infinite;
+        .bombilla {
+            fill: url(#metalGradient);
+            stroke: #4a4a4a;
+            stroke-width: 2;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        /* Steam particles */
+        .steam-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            animation: steamRise linear infinite;
+            filter: blur(10px);
+        }
+
+        /* Water drops */
+        .water-drop {
+            position: absolute;
+            background: linear-gradient(180deg, #c8e6c9 0%, #81c784 50%, #4a8c3f 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: dropFall 1s ease-in infinite;
+            opacity: 0;
+            filter: blur(1px);
+        }
+
+        /* Heat waves */
+        .heat-wave {
+            position: absolute;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: heatExpand 3s ease-out infinite;
             opacity: 0;
         }
 
-        .steam-1 { animation-delay: 0s; }
-        .steam-2 { animation-delay: 1s; }
-        .steam-3 { animation-delay: 2s; }
-
         @keyframes steamRise {
-            0% { transform: translateY(0); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(-50px); opacity: 0; }
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-100px) translateX(20px) scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-200px) translateX(-20px) scale(2);
+                opacity: 0;
+            }
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: var(--text);
+        @keyframes dropFall {
+            0% {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(50px) scale(1);
+                opacity: 0.7;
+            }
         }
 
-        .scroll-indicator i {
-            animation: bounce 2s infinite;
-            font-size: 2rem;
+        @keyframes heatExpand {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
-        }
-
-        /* Products Section */
-        .products {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
-        .section-title span {
-            color: var(--primary);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            transition: transform 0.5s;
-        }
-
-        .product-card:hover .product-image::after {
-            transform: scale(1.5);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .product-rating {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .add-to-cart:hover {
-            background: var(--secondary);
-        }
-
-        /* Interactive Features */
-        .interactive-section {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, var(--dark) 0%, #2c1810 100%);
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-
-        .feature-item:hover {
-            background: rgba(255,255,255,0.1);
-            transform: scale(1.05);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        /* Cart Modal */
-        .cart-modal {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100%;
-            background: white;
-            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
-            transition: right 0.5s;
-            z-index: 1001;
-            padding: 2rem;
-            overflow-y: auto;
-        }
-
-        .cart-modal.open {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-total {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 2px solid var(--primary);
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            margin-top: 1rem;
-            cursor: pointer;
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
+        /* Progress indicator */
+        .progress-indicator {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .progress-step {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #D4A574;
+            opacity: 0.3;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .progress-step.active {
+            opacity: 1;
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.8);
+        }
+
+        .progress-label {
+            position: absolute;
+            right: 30px;
+            white-space: nowrap;
+            color: #D4A574;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .progress-step:hover .progress-label {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
+            .mate-scene {
+                width: 300px;
+                height: 300px;
+            }
             .hero h1 {
                 font-size: 3rem;
             }
-            
-            .nav-links {
+            .progress-indicator {
                 display: none;
-            }
-            
-            .mate-container {
-                width: 200px;
-                height: 300px;
-            }
-            
-            .cart-modal {
-                width: 100%;
-                right: -100%;
-            }
-            
-            .section-title {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-mate"></div>
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="logo">Rui<span>Mates</span></a>
-        <ul class="nav-links">
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#experiencia">Experiencia</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-        <button class="cta-btn" style="padding: 0.5rem 1.5rem; background: var(--accent); border: none; cursor: pointer;" onclick="toggleCart()">
-            <i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span>
-        </button>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Hero -->
+    <section class="hero">
         <div class="hero-content">
             <h1>Rui<span>Mates</span></h1>
-            <p>La tradición argentina en cada mate</p>
-            <a href="#experiencia" class="cta-btn">Descubrir Experiencia</a>
+            <p>La experiencia del mate perfecto</p>
+        </div>
+        <div class="scroll-hint">
+            <span>Bajá para cebar tu mate</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Mate Animation Section -->
-    <section class="mate-animation-section" id="experiencia">
-        <div class="mate-sticky">
-            <div class="mate-container">
-                <svg class="mate-svg" viewBox="0 0 300 400">
-                    <!-- Mate Body -->
-                    <path class="mate-body" d="M100,150 C100,120 120,100 150,100 C180,100 200,120 200,150 L195,250 C190,280 170,300 150,300 C130,300 110,280 105,250 Z"/>
+    <!-- Mate Experience -->
+    <section class="mate-experience" id="mateExperience">
+        <div class="mate-sticky-container">
+            <div class="mate-scene">
+                <!-- Steam particles container -->
+                <div id="steamContainer"></div>
+                
+                <!-- Water drops container -->
+                <div id="waterDropsContainer"></div>
+                
+                <!-- Heat waves -->
+                <div id="heatWavesContainer"></div>
+                
+                <!-- Mate SVG -->
+                <svg class="mate-svg" viewBox="0 0 600 600">
+                    <defs>
+                        <!-- Mate body gradient -->
+                        <linearGradient id="mateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8b5e3c"/>
+                            <stop offset="30%" style="stop-color:#6b3a2a"/>
+                            <stop offset="70%" style="stop-color:#4a2518"/>
+                            <stop offset="100%" style="stop-color:#2d1410"/>
+                        </linearGradient>
+                        
+                        <!-- Inner mate gradient -->
+                        <radialGradient id="innerGradient" cx="50%" cy="40%" r="50%">
+                            <stop offset="0%" style="stop-color:#3d1f14"/>
+                            <stop offset="100%" style="stop-color:#2d1410"/>
+                        </radialGradient>
+                        
+                        <!-- Yerba gradient -->
+                        <linearGradient id="yerbaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4a8c3f"/>
+                            <stop offset="100%" style="stop-color:#2d4a28"/>
+                        </linearGradient>
+                        
+                        <!-- Water gradient -->
+                        <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8f5e9;stop-opacity:0.9"/>
+                            <stop offset="50%" style="stop-color:#a5d6a7;stop-opacity:0.7"/>
+                            <stop offset="100%" style="stop-color:#4a8c3f;stop-opacity:0.5"/>
+                        </linearGradient>
+                        
+                        <!-- Metal gradient for bombilla -->
+                        <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#c0c0c0"/>
+                            <stop offset="50%" style="stop-color:#f0f0f0"/>
+                            <stop offset="100%" style="stop-color:#808080"/>
+                        </linearGradient>
+                        
+                        <!-- Filters -->
+                        <filter id="roughPaper">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+                            <feDiffuseLighting in="noise" lighting-color="white" surfaceScale="2">
+                                <feDistantLight azimuth="45" elevation="60"/>
+                            </feDiffuseLighting>
+                            <feComposite in="SourceGraphic" in2="noise" operator="arithmetic" k1="0.8" k2="0.2" k3="0" k4="0"/>
+                        </filter>
+                    </defs>
                     
-                    <!-- Mate Rim -->
-                    <ellipse class="mate-rim" cx="150" cy="105" rx="65" ry="15"/>
+                    <!-- Mate body - Imperial style -->
+                    <path class="mate-body" d="M200,200 C200,180 220,170 300,170 C380,170 400,180 400,200 
+                             L395,400 C390,440 370,460 300,460 C230,460 210,440 205,400 Z"/>
                     
-                    <!-- Yerba -->
-                    <path class="yerba" d="M95,110 C95,100 120,92 150,92 C180,92 205,100 205,110 C205,115 180,112 150,112 C120,112 95,115 95,110 Z"/>
+                    <!-- Mate rim -->
+                    <ellipse cx="300" cy="175" rx="110" ry="25" fill="#8b5e3c" stroke="#2d1410" stroke-width="3"/>
                     
-                    <!-- Water (animated) -->
-                    <ellipse class="water" cx="150" cy="108" rx="60" ry="12" id="waterLevel"/>
+                    <!-- Inner mate -->
+                    <ellipse cx="300" cy="175" rx="95" ry="20" fill="#3d1f14"/>
+                    
+                    <!-- Yerba bed -->
+                    <path class="yerba" d="M215,175 C215,165 250,158 300,158 C350,158 385,165 385,175 
+                             C385,185 350,190 300,190 C250,190 215,185 215,175 Z"/>
+                    
+                    <!-- Water level - this will animate -->
+                    <ellipse class="water" cx="300" cy="175" rx="90" ry="18" id="waterLevel"/>
+                    
+                    <!-- Water surface shine -->
+                    <ellipse cx="300" cy="175" rx="60" ry="10" fill="rgba(255,255,255,0.3)" id="waterShine" style="opacity:0"/>
                     
                     <!-- Bombilla -->
-                    <path d="M165,105 L175,50 L185,50 L175,105" fill="#C0C0C0" stroke="#808080" stroke-width="2"/>
-                    <path d="M165,105 L175,105" stroke="#808080" stroke-width="3"/>
+                    <g class="bombilla">
+                        <path d="M320,170 L340,80 L355,80 L335,170" fill="none" stroke="url(#metalGradient)" stroke-width="12"/>
+                        <path d="M320,170 L335,170" stroke="url(#metalGradient)" stroke-width="15"/>
+                        <ellipse cx="337" cy="80" rx="15" ry="8" fill="url(#metalGradient)"/>
+                        <!-- Bombilla holes -->
+                        <circle cx="330" cy="160" r="2" fill="#2d1410"/>
+                        <circle cx="335" cy="155" r="2" fill="#2d1410"/>
+                        <circle cx="328" cy="152" r="2" fill="#2d1410"/>
+                        <circle cx="333" cy="162" r="2" fill="#2d1410"/>
+                    </g>
                     
-                    <!-- Steam -->
-                    <ellipse class="steam steam-1" cx="145" cy="40" rx="8" ry="4" fill="none" stroke="#fff" stroke-width="2"/>
-                    <ellipse class="steam steam-2" cx="155" cy="35" rx="6" ry="3" fill="none" stroke="#fff" stroke-width="2"/>
-                    <ellipse class="steam steam-3" cx="150" cy="30" rx="7" ry="3.5" fill="none" stroke="#fff" stroke-width="2"/>
+                    <!-- Leather detail -->
+                    <path d="M190,210 C185,220 185,230 190,240" fill="none" stroke="#2d1410" stroke-width="3"/>
+                    <path d="M410,210 C415,220 415,230 410,240" fill="none" stroke="#2d1410" stroke-width="3"/>
+                    
+                    <!-- Metal ring -->
+                    <ellipse cx="300" cy="460" rx="60" ry="8" fill="none" stroke="#c0c0c0" stroke-width="3"/>
                 </svg>
             </div>
-            <div class="scroll-indicator">
-                <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Sigue bajando...</p>
-                <i class="fas fa-chevron-down" style="color: var(--primary);"></i>
-            </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="productos">
-        <h2 class="section-title">Nuestros <span>Productos</span></h2>
-        <div class="products-grid" id="productsGrid">
-            <!-- Products will be added by JavaScript -->
-        </div>
-    </section>
-
-    <!-- Interactive Features -->
-    <section class="interactive-section" id="contacto">
-        <h2 class="section-title" style="color: white;">¿Por qué <span style="color: var(--accent);">RuiMates</span>?</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-                <h3>100% Artesanal</h3>
-                <p>Hecho a mano con materiales nobles</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-truck"></i></div>
-                <h3>Envío a todo el país</h3>
-                <p>Recibe tu mate en 48hs</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-heart"></i></div>
-                <h3>Garantía de por vida</h3>
-                <p>Si se rompe, lo reparamos</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h3>+5000 clientes</h3>
-                <p>La comunidad matera más grande</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer style="background: var(--dark); color: white; text-align: center; padding: 2rem;">
-        <p style="font-size: 1.2rem;">© 2024 RuiMates - Todos los derechos reservados</p>
-        <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: center;">
-            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-            <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-        </div>
-    </footer>
-
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-header">
-            <h2>Carrito de Compras</h2>
-            <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-        </div>
-        <div id="cartItems"></div>
-        <div class="cart-total" id="cartTotal">Total: $0</div>
-        <button class="checkout-btn" onclick="checkout()">Finalizar Compra</button>
+    <!-- Progress indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        <div class="progress-step" data-step="0"><span class="progress-label">Mate vacío</span></div>
+        <div class="progress-step" data-step="1"><span class="progress-label">Agregando yerba</span></div>
+        <div class="progress-step" data-step="2"><span class="progress-label">Calentando agua</span></div>
+        <div class="progress-step" data-step="3"><span class="progress-label">Cebando mate</span></div>
+        <div class="progress-step" data-step="4"><span class="progress-label">Listo para tomar</span></div>
     </div>
 
     <script>
-        // Products Data
-        const products = [
-            { id: 1, name: "Mate Imperial", price: 4500, icon: "🧉", rating: 5, description: "Mate de calabaza premium" },
-            { id: 2, name: "Mate Camionero", price: 3800, icon: "🧉", rating: 4.5, description: "Mate grande para compartir" },
-            { id: 3, name: "Bombilla Pico de Loro", price: 2500, icon: "🥤", rating: 5, description: "Bombilla de alpaca" },
-            { id: 4, name: "Yerbera Premium", price: 3200, icon: "🫙", rating: 4.8, description: "Yerbera de cerámica" },
-            { id: 5, name: "Canasta Matera", price: 8900, icon: "🧺", rating: 5, description: "Canasta completa premium" },
-            { id: 6, name: "Mate Autocebante", price: 5200, icon: "⚡", rating: 4.7, description: "Mate de acero inoxidable" }
-        ];
-
-        let cart = [];
-
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1500);
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mate water filling animation
         const waterLevel = document.getElementById('waterLevel');
-        const mateSection = document.querySelector('.mate-animation-section');
-        
-        window.addEventListener('scroll', () => {
-            const rect = mateSection.getBoundingClientRect();
-            const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-            
-            // Water level animation (0 to 1)
-            const waterProgress = Math.max(0, Math.min(1, scrollProgress));
-            
-            // Update water level
-            const waterY = 108 - (waterProgress * 15);
-            const waterHeight = 5 + (waterProgress * 10);
-            waterLevel.setAttribute('cy', waterY);
-            waterLevel.setAttribute('ry', waterHeight);
-            
-            // Change water color based on fill level
-            if (waterProgress > 0.7) {
-                waterLevel.style.fill = '#81c784';
-            } else if (waterProgress > 0.4) {
-                waterLevel.style.fill = '#a5d6a7';
-            } else {
-                waterLevel.style.fill = '#c8e6c9';
-            }
-            
-            // Show steam when water is hot
-            const steamElements = document.querySelectorAll('.steam');
-            if (waterProgress > 0.3) {
-                steamElements.forEach(steam => {
-                    steam.style.opacity = '1';
-                });
-            } else {
-                steamElements.forEach(steam => {
-                    steam.style.opacity = '0';
-                });
-            }
-        });
+        const waterShine = document.getElementById('waterShine');
+        const steamContainer = document.getElementById('steamContainer');
+        const waterDropsContainer = document.getElementById('waterDropsContainer');
+        const heatWavesContainer = document.getElementById('heatWavesContainer');
+        const mateExperience = document.getElementById('mateExperience');
+        const progressSteps = document.querySelectorAll('.progress-step');
 
-        // Render Products
-        function renderProducts() {
-            const productsGrid = document.getElementById('productsGrid');
-            productsGrid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <div class="product-image">
-                        <span style="font-size: 5rem;">${product.icon}</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <p style="color: #666; margin-bottom: 0.5rem;">${product.description}</p>
-                        <div class="product-rating">
-                            ${Array.from({length: 5}, (_, i) => 
-                                `<i class="fas fa-star${i < Math.floor(product.rating) ? '' : '-half-alt'}" style="color: var(--accent);"></i>`
-                            ).join('')}
-                            <span style="color: #666; font-size: 0.9rem;">(${product.rating})</span>
-                        </div>
-                        <p class="product-price">$${product.price.toLocaleString()}</p>
-                        <button class="add-to-cart" onclick="addToCart(${product.id})">
-                            <i class="fas fa-cart-plus"></i> Agregar al carrito
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Cart functions
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-            
-            updateCartUI();
-            showNotification(`${product.name} agregado al carrito`);
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: #999;">Carrito vacío</p>';
-            } else {
-                cartItems.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div>
-                            <strong>${item.name}</strong>
-                            <p style="font-size: 0.9rem; color: #666;">$${item.price.toLocaleString()} x ${item.quantity}</p>
-                        </div>
-                        <button onclick="removeFromCart(${item.id})" style="background: none; border: none; color: red; cursor: pointer;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `).join('');
-            }
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            cartTotal.textContent = `Total: $${total.toLocaleString()}`;
-        }
-
-        function toggleCart() {
-            const cartModal = document.getElementById('cartModal');
-            cartModal.classList.toggle('open');
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert('El carrito está vacío');
-                return;
-            }
-            alert('¡Gracias por tu compra! Te contactaremos para coordinar el envío.');
-            cart = [];
-            updateCartUI();
-            toggleCart();
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: var(--primary);
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                font-weight: 600;
-                z-index: 2000;
-                animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
+        // Steam particle creator
+        function createSteamParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'steam-particle';
+            const size = Math.random() * 30 + 20;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = (280 + Math.random() * 40) + 'px';
+            particle.style.top = '150px';
+            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            particle.style.animationDelay = Math.random() + 's';
+            steamContainer.appendChild(particle);
             
             setTimeout(() => {
-                notification.remove();
+                particle.remove();
+            }, 4000);
+        }
+
+        // Water drop creator
+        function createWaterDrop() {
+            const drop = document.createElement('div');
+            drop.className = 'water-drop';
+            drop.style.width = '8px';
+            drop.style.height = '12px';
+            drop.style.left = (290 + Math.random() * 20) + 'px';
+            drop.style.top = '100px';
+            drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+            waterDropsContainer.appendChild(drop);
+            
+            setTimeout(() => {
+                drop.remove();
+            }, 1500);
+        }
+
+        // Heat wave creator
+        function createHeatWave() {
+            const wave = document.createElement('div');
+            wave.className = 'heat-wave';
+            wave.style.width = '50px';
+            wave.style.height = '50px';
+            wave.style.left = (280 + Math.random() * 40) + 'px';
+            wave.style.top = '140px';
+            heatWavesContainer.appendChild(wave);
+            
+            setTimeout(() => {
+                wave.remove();
             }, 3000);
         }
 
-        // Add custom animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
+        // Update mate state based on scroll
+        function updateMateState(scrollProgress) {
+            // Water level animation (0 to 1)
+            const waterFill = Math.max(0, Math.min(1, scrollProgress * 1.5 - 0.2));
+            
+            // Update water level
+            const waterY = 175 - (waterFill * 10);
+            const waterRy = 5 + (waterFill * 15);
+            waterLevel.setAttribute('cy', waterY);
+            waterLevel.setAttribute('ry', waterRy);
+            
+            // Water shine
+            if (waterFill > 0.5) {
+                waterShine.style.opacity = (waterFill - 0.5) * 2;
+            } else {
+                waterShine.style.opacity = 0;
             }
-            @keyframes fadeOut {
-                from { opacity: 1; }
-                to { opacity: 0; }
+            
+            // Create steam when water is hot (after 30% scroll)
+            if (waterFill > 0.3 && Math.random() < 0.1) {
+                createSteamParticle();
             }
-        `;
-        document.head.appendChild(style);
+            
+            // Create water drops when water is being poured
+            if (waterFill > 0.2 && waterFill < 0.7 && Math.random() < 0.3) {
+                createWaterDrop();
+            }
+            
+            // Create heat waves
+            if (waterFill > 0.4 && Math.random() < 0.05) {
+                createHeatWave();
+            }
+            
+            // Update progress indicators
+            const progressIndex = Math.floor(waterFill * 5);
+            progressSteps.forEach((step, index) => {
+                if (index <= progressIndex) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            // Continuous steam generation when water is hot
+            if (waterFill > 0.5) {
+                if (Math.random() < 0.3) {
+                    createSteamParticle();
+                }
+            }
+        }
 
-        // Initialize
-        renderProducts();
-        updateCartUI();
+        // Scroll event listener
+        window.addEventListener('scroll', () => {
+            const rect = mateExperience.getBoundingClientRect();
+            const totalHeight = mateExperience.offsetHeight;
+            const scrollProgress = (window.innerHeight - rect.top) / totalHeight;
+            
+            updateMateState(scrollProgress);
+        });
+
+        // Initial steam particles on load
+        setInterval(() => {
+            const rect = mateExperience.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                // Only generate steam if user is in the mate section
+                const scrollProgress = (window.innerHeight - rect.top) / mateExperience.offsetHeight;
+                if (scrollProgress > 0.3) {
+                    createSteamParticle();
+                }
+            }
+        }, 1000);
+
+        // Smooth scroll for progress indicators
+        progressSteps.forEach((step, index) => {
+            step.addEventListener('click', () => {
+                const targetScroll = (index / 5) * mateExperience.offsetHeight;
+                window.scrollTo({
+                    top: mateExperience.offsetTop + targetScroll,
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
